@@ -31,8 +31,8 @@ void process_image_callback(const sensor_msgs::Image img)
     int x_coordinate; 
 
     // Loop through each pixel in the image and check if there is white
-    for (int i = 0; i < img.height * img.step; i++) {
-        if (img.data[i] == 255) {
+    for (int i = 0; i < img.height * img.step - 3; i+=3) {
+        if (img.data[i] == 255 && img.data[i+1] == 255 && img.data[i+2] == 255) {
             contains_white = true;
             x_coordinate = i % img.step;
             break;
